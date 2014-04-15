@@ -46,8 +46,10 @@ git clone https://github.com/your-user-name/radioscripts_contrib.git
 
 2c. This will create a subdirectory named radioscripts_contrib which contains the full repository. Within radioscripts_contrib/radioscripts_contrib/ scripts are organized into subfolders by topic. If there is a subfolder that describes the topic your script fits into, copy your code into that path (for instance, if you wrote a routine to fit spectral lines, this might belong under the spectralline path.) If no folder adequately describes the topic of your script, just copy it into the radioscripts_contrib/radioscripts_contrib/ path. We request that contributed code be prefaced with a two line license statement at the top:
 
+```
 # Licensed under a 3-clause BSD style license - see LICENSE.rst
 # Copyright [authorname]
+```
 
 We also request that you add a one or two line description of your code in the README file in the subdirectory where you place your code. 
 
