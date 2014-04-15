@@ -1,6 +1,6 @@
-I have some code. I just want to add it! How do I do that?
+###I have some code. I just want to add it! How do I do that?
 
-radioscripts_contrib is a collection of user-created radio astronomy python scripts. This code is offered with minimal vetting process and without any guarantee of reliability or accuracy. We encourage interested visitors to contribute by adding their own useful python routines. The radioscripts_contrib collection operates out of a Git Hub repository. Below is a very quick and very dirty tutorial on how to contribute your own code to the repository. This will not make you a Git master, but it will let you get the job done. If you're interested in a more in depth look at coordinating public contributed code in a nice controlled manner you may want to check out the Astropy tutorial on contributing code: http://docs.astropy.org/en/latest/development/workflow/development_workflow.html.
+radioscripts_contrib is a collection of user-created radio astronomy python scripts. This code is offered with minimal vetting process and without any guarantee of reliability or accuracy. We encourage interested visitors to contribute by adding their own useful python routines. The radioscripts_contrib collection operates out of a Git Hub repository. Below is a very quick and very dirty tutorial on how to contribute your own code to the repository. This will not make you a Git master, but it will let you get the job done. If you're interested in a more in depth look at coordinating public contributed code in a nice controlled manner you may want to check out the Astropy tutorial on contributing code: http://docs.astropy.org/en/latest/development/workflow/development_workflow.html
 
 Briefly, here are the steps we'll be going through (if these don't make sense right now, don't worry we've got you covered below!): install and configure Git; create a personal fork of the radioscripts_contrib repository; clone your fork onto your machine; add your code as a new file in the appropriate directory; add, commit, and push your changes back onto your online repository; and finally do a pull request to ask moderators to merge the changes in your fork into the main version.
 
@@ -12,15 +12,26 @@ If you already know your way around Git you can skip down to step 2.
 
 1b. Next you need to make sure Git is installed on your computer. If you're working on a linux machine there's a good chance you already have it. To check, open a terminal and type
 
+```
 git --version
+```
 
-If git is installed you should see a message telling you what version you have. If it's not installed head over to http://git-scm.com/downloads and download the version appropriate for your OS.
+If git is installed you should see a message telling you what version you have. Something along these lines:
+
+```
+git version 1.7.1
+```
+
+ If it's not installed head over to http://git-scm.com/downloads and download the version appropriate for your OS.
 
 1c. You need to configure Git on your machine to let it know who you are. You can read through the Git guide on doing this here: https://help.github.com/articles/set-up-git#set-up-git
 But in the end this only requires two simple lines of 
 typing in terminal:
+
+```
 git config --global user.name "Your Name Here"
 git config --global user.email "your_email@example.com"
+```
 
 The Git guide also describes how to set up password caching (and there's the alternative of using SSH keys instead: https://help.github.com/articles/generating-ssh-keys) but these steps are only useful to save yourself time later from typing in a password when intereacting with your online Git repository. Don't worry about that unless you want to.
 
@@ -49,30 +60,54 @@ Note that if you're just trying this tutorial out to get the hang of it, there's
 
 If you ask Git about your files by typing:
 
+```
 git status
+```
 
-Git will point out these new and edited files to you. You should get some lines of informational text along with the notice that you have "Untracked" files. These are the files which are newly updated since the last time you told Git about the important files you want to add. Along with the one or two files you actually care about there might be some junk files you don't care about (autosaved files ending in a ~ for instance.)
+Git will point out these new and edited files to you. You should get some lines of informational text along with the notice that you have "Untracked" files. These are the files which are newly updated since the last time you told Git about the important files you want to add. Along with the one or two files you actually care about there might be some junk files you don't care about (autosaved files ending in a ~ for instance.) It will look something like this:
+
+
+```
+# On branch master
+# Your branch is ahead of 'origin/master' by 1 commit.
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#	helloworld.py
+#       README.md
+#	helloworld.py~
+nothing added to commit but untracked files present (use "git add" to track)
+```
 
 Stage the important files for uploading by typing
 
+```
 git add your-first-file.name
 git add your-second-file.name
+```
 
 Ask git about the status again:
 
+```
 git status
+```
 
 And you should now see your important files listed under "# Changes to be committed"
 
 3b. You are now ready to commit these changes. As you do this include a brief message saying what changes you've made in your Git repository:
 
+```
 git commit -m "Added my python script to fit spectral lines and updated README"
+```
 
 3c. Now you need to push this version of the repository back online:
 
+```
 git push
+```
 
-3d. Almost done, now you just need to request to get your contributions merged into the main radioscripts_contrib repository by performing a "pull request". To do this, go back to your online forked version of the radioscripts_contrib repository. If you want to check, you can browse to the appropriate path and you should now see your newly added file(s). On the left side of the page, just above the list of files there is a green button with two arrows. Click it to perform a pull request.
+3d. Almost done, now you just need to request to get your contributions merged into the main radioscripts_contrib repository by performing a "pull request". To do this, go back to your online forked version of the radioscripts_contrib repository. If you want to check, you can browse to the appropriate path and you should now see your newly added file(s). On the left side of the page, just above the list of files there is a green button with two arrows. Click it to go to a page that will summarize your changes and ask for a title. If all looks good then click the green button on that page and your pull request will be processed
 
 
 You're done!
