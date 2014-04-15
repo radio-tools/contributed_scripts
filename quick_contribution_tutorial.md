@@ -12,9 +12,9 @@ Briefly, here are the steps we'll be going through (if these don't make sense ri
 
    2. Next you need to make sure Git is installed on your computer. If you're working on a linux machine there's a good chance you already have it. To check, open a terminal and type
 
-```
-git --version
-```
+   ```
+   git --version
+   ```
 
    If git is installed you should see a message telling you what version you have. Something along these lines:
 
