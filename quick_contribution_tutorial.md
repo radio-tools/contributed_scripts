@@ -6,25 +6,25 @@ Briefly, here are the steps we'll be going through (if these don't make sense ri
 
 
 1. Get Git
-If you already know your way around Git you can skip down to step 2.
+   If you already know your way around Git you can skip down to step 2.
 
-1a. If you don't already have an account, the first step is to go to github.com and set one up. 
+   1. If you don't already have an account, the first step is to go to github.com and set one up. 
 
-1b. Next you need to make sure Git is installed on your computer. If you're working on a linux machine there's a good chance you already have it. To check, open a terminal and type
+   2. Next you need to make sure Git is installed on your computer. If you're working on a linux machine there's a good chance you already have it. To check, open a terminal and type
 
 ```
 git --version
 ```
 
-If git is installed you should see a message telling you what version you have. Something along these lines:
+   If git is installed you should see a message telling you what version you have. Something along these lines:
 
 ```
 git version 1.7.1
 ```
 
- If it's not installed head over to http://git-scm.com/downloads and download the version appropriate for your OS.
+   If it's not installed head over to http://git-scm.com/downloads and download the version appropriate for your OS.
 
-1c. You need to configure Git on your machine to let it know who you are. You can read through the Git guide on doing this here: https://help.github.com/articles/set-up-git#set-up-git
+   3. You need to configure Git on your machine to let it know who you are. You can read through the Git guide on doing this here: https://help.github.com/articles/set-up-git#set-up-git
 But in the end this only requires two simple lines of 
 typing in terminal:
 
@@ -33,40 +33,78 @@ git config --global user.name "Your Name Here"
 git config --global user.email "your_email@example.com"
 ```
 
-The Git guide also describes how to set up password caching (and there's the alternative of using SSH keys instead: https://help.github.com/articles/generating-ssh-keys) but these steps are only useful to save yourself time later from typing in a password when intereacting with your online Git repository. Don't worry about that unless you want to.
+   The Git guide also describes how to set up password caching (and there's the alternative of using SSH keys instead.) These steps are _generally_ only useful to save yourself time later from typing in a password when intereacting with your online Git repository. Don't worry about that unless you want to. _However,_ if you have git version 1.7.1 (as we do in this example,) you need to set up SSH keys.
 
+   #####Extra special steps for those using git version 1.7.1
+If you have a later version skip down to step 2.
+For those of you working with git version 1.7.1, head over to https://help.github.com/articles/generating-ssh-keys and follow along with their walkthrough and explanation of setting up an SSH key.
+
+   After you've done that there's one more step of configuration. Open the file .git/config in your favorite text editor. It will look something like this:
+
+```
+[core]
+        repositoryformatversion = 0
+        filemode = true
+        bare = false
+        logallrefupdates = true
+[remote "origin"]
+        fetch = +refs/heads/*:refs/remotes/origin/*
+        url = https://github.com/brisbind/radioscripts_contrib.git
+[branch "master"]
+        remote = origin
+        merge = refs/heads/master
+
+```
+
+   Change the url in the [remote "origin"] section:
+
+```
+[core]
+        repositoryformatversion = 0
+        filemode = true
+        bare = false
+        logallrefupdates = true
+[remote "origin"]
+        fetch = +refs/heads/*:refs/remotes/origin/*
+        url = git@github.com:brisbind/radioscripts_contrib.git
+[branch "master"]
+        remote = origin
+        merge = refs/heads/master
+
+```
+   save and close the file.
 
 2. Set up your personal version of radioscripts_contrib
 
-2a. You need to create a "fork" of the radioscripts_contrib repository to have a personal version you can muck around with. From the online Git repository (https://github.com/radio-tools/radioscripts_contrib) click the button labelled "Fork" located near the upper right hand corner.
+   1. You need to create a "fork" of the radioscripts_contrib repository to have a personal version you can muck around with. From the online Git repository (https://github.com/radio-tools/radioscripts_contrib) click the button labelled "Fork" located near the upper right hand corner.
 
-2b. You now need to create a "clone" (copy) of the radioscripts_contrib repository. Navigate to a path in terminal where you want to work and type:
+   2. You now need to create a "clone" (copy) of the radioscripts_contrib repository. Navigate to a path in terminal where you want to work and type:
 
-git clone https://github.com/your-user-name/radioscripts_contrib.git
+   git clone https://github.com/your-user-name/radioscripts_contrib.git
 
-2c. This will create a subdirectory named radioscripts_contrib which contains the full repository. Within radioscripts_contrib/radioscripts_contrib/ scripts are organized into subfolders by topic. If there is a subfolder that describes the topic your script fits into, copy your code into that path (for instance, if you wrote a routine to fit spectral lines, this might belong under the spectralline path.) If no folder adequately describes the topic of your script, just copy it into the radioscripts_contrib/radioscripts_contrib/ path. We request that contributed code be prefaced with a two line license statement at the top:
+   3. This will create a subdirectory named radioscripts_contrib which contains the full repository. Within radioscripts_contrib/radioscripts_contrib/ scripts are organized into subfolders by topic. If there is a subfolder that describes the topic your script fits into, copy your code into that path (for instance, if you wrote a routine to fit spectral lines, this might belong under the spectralline path.) If no folder adequately describes the topic of your script, just copy it into the radioscripts_contrib/radioscripts_contrib/ path. We request that contributed code be prefaced with a two line license statement at the top:
 
 ```
 # Licensed under a 3-clause BSD style license - see LICENSE.rst
 # Copyright [authorname]
 ```
 
-We also request that you add a one or two line description of your code in the README file in the subdirectory where you place your code. 
+   We also request that you add a one or two line description of your code in the README file in the subdirectory where you place your code. 
 
-Note that if you're just trying this tutorial out to get the hang of it, there's a file named helloworld.py which you should feel free to edit.
+   Note that if you're just trying this tutorial out to get the hang of it, there's a file named helloworld.py which you should feel free to edit.
 
 
 3. Tell the online Git hub about your edited version of the repository
 
-3a. At this point on your machine you should have a version of the radioscripts_contrib repository that is nearly identical to the one you started with, except with one or two new or edited files (the README file and your new script.)
+   1. At this point on your machine you should have a version of the radioscripts_contrib repository that is nearly identical to the one you started with, except with one or two new or edited files (the README file and your new script.)
 
-If you ask Git about your files by typing:
+   If you ask Git about your files by typing:
 
 ```
 git status
 ```
 
-Git will point out these new and edited files to you. You should get some lines of informational text along with the notice that you have "Untracked" files. These are the files which are newly updated since the last time you told Git about the important files you want to add. Along with the one or two files you actually care about there might be some junk files you don't care about (autosaved files ending in a ~ for instance.) It will look something like this:
+   Git will point out these new and edited files to you. You should get some lines of informational text along with the notice that you have "Untracked" files. These are the files which are newly updated since the last time you told Git about the important files you want to add. Along with the one or two files you actually care about there might be some junk files you don't care about (autosaved files ending in a ~ for instance.) It will look something like this:
 
 
 ```
@@ -82,34 +120,34 @@ Git will point out these new and edited files to you. You should get some lines 
 nothing added to commit but untracked files present (use "git add" to track)
 ```
 
-Stage the important files for uploading by typing
+   Stage the important files for uploading by typing
 
 ```
 git add your-first-file.name
 git add your-second-file.name
 ```
 
-Ask git about the status again:
+   Ask git about the status again:
 
 ```
 git status
 ```
 
-And you should now see your important files listed under "# Changes to be committed"
+   And you should now see your important files listed under "# Changes to be committed"
 
-3b. You are now ready to commit these changes. As you do this include a brief message saying what changes you've made in your Git repository:
+   2. You are now ready to commit these changes. As you do this include a brief message saying what changes you've made in your Git repository:
 
 ```
 git commit -m "Added my python script to fit spectral lines and updated README"
 ```
 
-3c. Now you need to push this version of the repository back online:
+   3. Now you need to push this version of the repository back online:
 
 ```
 git push
 ```
 
-3d. Almost done, now you just need to request to get your contributions merged into the main radioscripts_contrib repository by performing a "pull request". To do this, go back to your online forked version of the radioscripts_contrib repository. If you want to check, you can browse to the appropriate path and you should now see your newly added file(s). On the left side of the page, just above the list of files there is a green button with two arrows. Click it to go to a page that will summarize your changes and ask for a title. If all looks good then click the green button on that page and your pull request will be processed
+   4. Almost done, now you just need to request to get your contributions merged into the main radioscripts_contrib repository by performing a "pull request". To do this, go back to your online forked version of the radioscripts_contrib repository. If you want to check, you can browse to the appropriate path and you should now see your newly added file(s). On the left side of the page, just above the list of files there is a green button with two arrows. Click it to go to a page that will summarize your changes and ask for a title. If all looks good then click the green button on that page and your pull request will be processed
 
 
 You're done!
