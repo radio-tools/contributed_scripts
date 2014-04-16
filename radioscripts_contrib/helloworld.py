@@ -1,5 +1,5 @@
 # Licensed under a 3-clause BSD style license - see LICENSE.rst
-# Copyright [Drew who likes oranges]
+# Copyright Drew who likes oranges
 
 name="Drew"
 favoritething="oranges"
